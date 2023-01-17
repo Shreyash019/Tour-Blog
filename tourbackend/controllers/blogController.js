@@ -1,3 +1,6 @@
+const blogModel = require('./../models/blogModel');
+
+
 exports.getBlogHome = async (req, res, next)=>{
     res.send('Blog Home')
 }

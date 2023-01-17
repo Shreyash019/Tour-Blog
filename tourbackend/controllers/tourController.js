@@ -1,3 +1,6 @@
+const tourModel = require('./../models/tourModel');
+
+
 exports.gettourHome = async (req, res, next)=>{
     res.send('User Profile')
 }

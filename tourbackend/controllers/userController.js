@@ -1,3 +1,6 @@
+const userModel = require('./../models/userModel');
+
+
 exports.getUserProfile = async (req, res, next)=>{
     res.send('User Profile')
 }
