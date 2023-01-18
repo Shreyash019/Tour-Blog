@@ -104,3 +104,25 @@ exports.deleteUserBlog = async (req, res, next)=>{
         }
     })
 }
+
+
+
+// Like a blog
+exports.blogToBeLikedByUser = async (req, res, next)=> {
+    let checkIfAlreadyLiked;
+    let blogId = req.params.id;
+    let userId = req.user._id;
+    const blogToLike = await blogModel.findById(blogId);
+    checkIfAlreadyLiked = blogToLike.likes.includes(userId);
+    if(checkIfAlreadyLiked){
+        blogToLike.likes = blogToLike.filter(like => like.toString()!==userId.toString())
+        await blogId.save();
+    } else {
+        blogToLike.likes.push(userId);
+        await blogToLike.save();
+    }
+    res.status(200).json({
+        status: 'Success',
+        data: blogToLike
+    });
+}
