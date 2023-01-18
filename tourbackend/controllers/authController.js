@@ -1,7 +1,7 @@
 const userModel = require('./../models/userModel');
 const authToken = require('../utils/authToken')
 
-
+// User Sign Up 
 exports.userSignUp = async (req, res, next)=>{
     const {name, email, password, confirmPassword} = req.body;
     if(!name || !email || !password || !confirmPassword){
@@ -29,6 +29,8 @@ exports.userSignUp = async (req, res, next)=>{
     })
 }
 
+
+// User Sign In 
 exports.userSignIn = async (req, res, next)=>{
     const {email, password} = req.body;
     let existingUser;
@@ -39,15 +41,17 @@ exports.userSignIn = async (req, res, next)=>{
     if(!existingUser || !await existingUser.correctPassword(password, existingUser.password)){
         return res.send(`User doesn't exist`)
     }
-    authToken.createSendToken(existingUser, 200, res)
-    // res.json({
-    //     status: 'Success',
-    //     data: {
-    //         existingUser
-    //     }
-    // })    
+    
+    authToken.createSendToken(existingUser, 200, res);  
 }
 
+
+// User password update
 exports.userPasswordUpdate = async (req, res, next)=>{
     res.send('User Password Update')
 }
+
+// User reset password using email
+
+
+// User password update using OTP

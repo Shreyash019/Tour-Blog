@@ -25,6 +25,21 @@ const userSchema = mongoose.Schema({
     profilePhoto:{
         type: String,
     },
+    passwordChangedAt: {
+        type: Date
+    },
+    blogs: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Post",
+        },
+    ],
+    comments: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Comment",
+        },
+    ],
 })
 
 userSchema.pre('save', async function(next){
@@ -35,6 +50,15 @@ userSchema.pre('save', async function(next){
 
 userSchema.methods.correctPassword = async function (candidatePassword, userPassword){
     return await bcrypt.compare(candidatePassword, userPassword)
+}
+
+userSchema.methods.changedPasswordAfter = function(JWTTimestamp){
+    if(this.passwordChangedAt){
+        const changedTimeStamp = parseInt(this.passwordChangedAt.getTime() / 1000, 10)
+        console.log(changedTimeStamp, JWTTimestamp)
+        return JWTTimestamp < changedTimeStamp;
+    }
+    return false
 }
 
 const userModel = mongoose.model('userModel', userSchema)
