@@ -8,21 +8,26 @@ exports.createCommentOnBlog = async (req, res, next)=>{
     const {description} = req.body;
     let userId = req.user._id;
     let blogId = req.params.id;
-    console.log('headers:: ',id, user)
-    const commentToBlog = await blogModel.findById({_id: blogId, authorUser: userId});
-    const commentByUser = await userModel.findById(userId);
-    const userComment = await commentModel.create({
-        blog: blogId,
-        commentByUser: userId,
-        description
-    });
-    await commentToBlog.save({ validateBeforeSave: false });
-    await commentByUser.save({ validateBeforeSave: false });
+    try{
+        console.log('headers:: ',id, user)
+        const commentToBlog = await blogModel.findById({_id: blogId, authorUser: userId});
+        const commentByUser = await userModel.findById(userId);
+        const userComment = await commentModel.create({
+            blog: blogId,
+            commentByUser: userId,
+            description
+        });
+        await commentToBlog.save({ validateBeforeSave: false });
+        await commentByUser.save({ validateBeforeSave: false });
 
-    res.status(201).json({
-        status: 'Success',
-        data: userComment
-    })
+        res.status(201).json({
+            status: 'Success',
+            data: userComment
+        })
+    } catch(err){
+        console.log(err)
+        res.send('Some error happened')
+    }
 }
 
 // Update a comment

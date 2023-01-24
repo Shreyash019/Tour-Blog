@@ -44,7 +44,8 @@ exports.protectResources = async (req, res, next)=>{
     }
 
     // 2) Verification of the token
-    const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET)
+    const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+
     // Password reset and Token theft control
     // 3) Check if user still exist
     const freshUser = await userModel.findById(decoded.id);
