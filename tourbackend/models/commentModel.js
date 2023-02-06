@@ -7,7 +7,7 @@ const commentModel = new mongoose.Schema(
       ref: "Post",
       required: [true, "Post is required"],
     },
-    commentByUser: {
+    user: {
       type: Object,
       required: [true, "User is required"],
     },

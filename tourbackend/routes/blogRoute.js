@@ -4,19 +4,22 @@ const blogController = require('./../controllers/blogController');
 const commentController = require('../controllers/commentController')
 const authToken = require('./../utils/authToken');
 
-router.route('/').get(blogController.getBlogHome);
-router.route('/createblog').post(blogController.createblog);
+router.route('/').get(blogController.getAllUsersBlogPosted);
 
-router.route('/userblogs').get(blogController.getAllBlogCreatedByUser);
-router.route('/userblog/:id').get(blogController.getSingleBlog);
-router.route('/userblogupdate/:id').patch(blogController.userBlogUpdate);
-router.route('/userblogdelete/:id').delete(blogController.deleteUserBlog);
+router.route('/post').post(authToken.isUserAuthenticated, blogController.createABlogByAuthUser);
 
-router.route('/userbloglike/:id').delete(blogController.blogToBeLikedByUser);
+router.route('/user').get(authToken.isUserAuthenticated, blogController.getAllBlogCreatedByAuthUser);
+router.route('/:id').get(authToken.isUserAuthenticated, blogController.getSingleBlogCreatedByAuthUser);
+router.route('/update/:id').put(authToken.isUserAuthenticated, blogController.updateABlogOfAuthUser);
+router.route('/delete/:id').delete(authToken.isUserAuthenticated, blogController.deleteUserBlogCreatedByAuthUser);
 
-router.route('/createblogcomment/:id').post(commentController.createCommentOnBlog)
-router.route('/updateblogcomment/:id').post(commentController.updateCommentOnBlog)
-router.route('/deleteblogcomment/:id').post(commentController.deleteCommentOnBlog)
+router.route('/like/:id').get(authToken.isUserAuthenticated, blogController.blogToBeLikeByUser);
+router.route('/dislike/:id').get(authToken.isUserAuthenticated, blogController.blogToBeDislikeByUser);
+
+router.route('/comment/:id').get(authToken.isUserAuthenticated, commentController.getAllCommentOnBlog)
+router.route('/comment/:id').post(authToken.isUserAuthenticated, commentController.createCommentOnBlog)
+router.route('/comment/:id').put( authToken.isUserAuthenticated, commentController.updateCommentOnBlog)
+router.route('/comment/:id').delete(authToken.isUserAuthenticated, commentController.deleteCommentOnBlog)
 
 
 module.exports = router

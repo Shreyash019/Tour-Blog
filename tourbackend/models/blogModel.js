@@ -7,7 +7,7 @@ const blogSchema = mongoose.Schema({
     blogImg: {
         type: String
     },
-    authorUser: {
+    author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         required: [true, "Author is required"],
@@ -19,6 +19,12 @@ const blogSchema = mongoose.Schema({
         },
     ],
     likes: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Likes",
+        },
+    ],
+    dislikes: [
         {
           type: mongoose.Schema.Types.ObjectId,
           ref: "Likes",
