@@ -20,7 +20,7 @@ router.route('/user/account/delete').delete(authToken.isUserAuthenticated, userC
 
 
 // Admin routes
-router.route('/admin/users').get(authenToken.isAuthenticateUser, authenToken.isUserAdmin("master"), userController.getAllUserAvailableInSystemByAdmin);
+router.route('/admin/users').get(authToken.isUserAuthenticated, authToken.isUserAdmin("master"), userController.getAllUserAvailableInSystemByAdmin);
 // All tour will be fetched from tour route
 router.route('/admin/user/:id')
     .get(authToken.isUserAdmin("master"), userController.getSingleUserDetailByAdmin)

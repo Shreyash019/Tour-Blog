@@ -1,16 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const orderController = require('../controllers/orderController');
-const authenToken  = require('../utils/authToken');
+const authToken  = require('../utils/authToken');
 
-router.route('/order/new').post(authenToken.isAuthenticateUser, orderController.newOrder);
-router.route('/order/:id').get(authenToken.isAuthenticateUser, orderController.getSingleOrder);
-router.route('/orders').get(authenToken.isAuthenticateUser, orderController.getMyOrders)
+router.route('/order/new').post(authToken.isAuthenticateUser, orderController.newOrder);
+router.route('/order/:id').get(authToken.isAuthenticateUser, orderController.getSingleOrder);
+router.route('/orders').get(authToken.isAuthenticateUser, orderController.getMyOrders)
 
-router.route('/guide/orders').get(authenToken.isAuthenticateUser, authenToken.isUserGuide("guide"), orderController.getAllOrdersByGuide);
+router.route('/guide/orders').get(authToken.isAuthenticateUser, authToken.isUserGuide("guide"), orderController.getAllOrdersByGuide);
 
 router.route('/guide/orders/:id')
-    .put(authenToken.isAuthenticateUser, authenToken.isUserGuide("guide"), orderController.updateOrderStatusByGuide)
-    .delete(authenToken.isAuthenticateUser, authenToken.isUserGuide("guide"), orderController.deleteOrderByGuide)
+    .put(authToken.isAuthenticateUser, authToken.isUserGuide("guide"), orderController.updateOrderStatusByGuide)
+    .delete(authToken.isAuthenticateUser, authToken.isUserGuide("guide"), orderController.deleteOrderByGuide)
 
 module.exports = router;
