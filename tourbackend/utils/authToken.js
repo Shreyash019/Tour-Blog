@@ -36,4 +36,42 @@ exports.isUserAuthenticated = CatchAsync( async(req, res, next)=>{
     req.user = await UserModel.findById(decodedData.id)
     console.log('Token:', token);
     next()
-})
+});
+
+//1
+// Guide
+exports.isUserGuide = (...roles)=>{
+    return (req, res, next)=>{
+        if(!roles.includes(req.user.role)){
+            return next(new ErrorHandler(`Role: ${req.user.role} is not allowed to access this resouce.`, 403))
+        }
+        next()
+    }
+}
+
+//2
+// Admin
+exports.isUserAdmin = (...master)=>{
+    return (req, res, next)=>{
+        if(!master.includes(req.user.admin)){
+            return next(new ErrorHandler(`Role: ${req.user.role} is not allowed to access this resouce.`, 403))
+        }
+        next()
+    }
+}
+
+
+exports.resourceProtects = (user, res)=>{
+    const token = this.authSignToken(user._id);
+
+    // options for cookie
+    const options = {
+        expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000),
+        httpOnly: true
+    }
+    res.cookie('token', token, options);
+    res.status(200).json({
+        success: true,
+        token
+    })
+}

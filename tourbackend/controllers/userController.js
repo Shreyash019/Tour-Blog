@@ -1,4 +1,5 @@
 const UserModel = require('./../models/userModel');
+const TourModel = require('./../models/tourModel');
 const crypto = require('crypto');
 const ErrorHandler = require('../utils/errorHandler');
 const CatchAsync = require('../middleware/catchAsync');
@@ -191,3 +192,97 @@ exports.userAccountDelete = CatchAsync(async(req, res, next)=>{
 // Getting upcomming tour
 
 
+
+
+// Admin Routes
+exports.getAllUserAvailableInSystemByAdmin = CatchAsync(async(req, res, next)=>{
+
+    const users = await UserModel.find();
+    if(!users){
+        return next(new ErrorHandler(`Users doesn't exist`, 404))
+    }
+    res.status(200).json({
+        suncess: true,
+        length: users.length,
+        data: {users}
+    })
+})
+
+// Admin get a User detail
+exports.getSingleUserDetailByAdmin = CatchAsync( async(req, res, next)=>{
+    const user = await UserModel.findById(req.params.id);
+    if(!user){
+        return next(new ErrorHandler(`User does not exist with ID: ${req.params.id}`))
+    }
+    res.status(200).json({
+        success: true,
+        user
+    })
+})
+
+
+exports.getSingleTourDetailByAdmin = CatchAsync( async(req, res, next)=>{
+    const tour = await TourModel.findById(req.params.id);
+    if(!tour){
+        return next(new ErrorHandler(`User does not exist with ID: ${req.params.id}`))
+    }
+    res.status(200).json({
+        success: true,
+        tour
+    })
+})
+
+exports.updateUserAccountAvailableInSystemByAdmin = CatchAsync(async(req, res, next)=>{
+    const newUserData = {
+        name: req.body.name,
+        email: req.body.email,
+        role: req.body.role
+    }
+    const user = await UserModel.findByIdAndUpdate(req.params.id, newUserData, {
+        new: true,
+        runValidators: true,
+        userFindAndModify: true
+    });
+    res.status(200).json({
+        suncess: true,
+        user
+    })
+})
+
+exports.updateTourAvailableInSystemByAdmin = CatchAsync(async(req, res, next)=>{
+    const tour = await TourModel.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true,
+        userFindAndModify: true
+    });
+    res.status(200).json({
+        suncess: true,
+        tour
+    })
+})
+
+exports.deleteUserAccountFromSystemByAdmin = CatchAsync(async(req, res, next)=>{
+    const user = await UserModel.findById(req.params.id);
+    if(!user){
+        return next(new ErrorHandler(`User does not exist with ID: ${req.params.id}`))
+    }
+    const deletedUser = await user.remove()
+    res.status(200).json({
+        suncess: true,
+        message: 'User Deleted',
+        deletedUser
+    })
+})
+
+exports.deleteTourFromSystemByAdmin = CatchAsync(async(req, res, next)=>{
+    const tour = await TourModel.findById(req.params.id);
+    if(!tour){
+        return next(new ErrorHandler(`Tour does not exist with ID: ${req.params.id}`))
+    }
+    const deletedTour = await tour.remove()
+    res.status(200).json({
+        suncess: true,
+        message: 'User Deleted',
+        deletedTour
+    })
+})

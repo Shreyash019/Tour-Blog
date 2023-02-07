@@ -38,6 +38,11 @@ const userSchema = mongoose.Schema({
         default: 'user',
 
     },
+    admin: {
+        type: String,
+        default: 'user',
+
+    },
     passwordChangedAt: {
         type: Date
     },

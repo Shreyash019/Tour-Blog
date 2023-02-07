@@ -16,10 +16,10 @@ app.get('/api/v1/', (req, res)=>{
     res.send('Home')
 })
 
-app.use('/api/v1/tour', tourRoute);
-app.use('/api/v1/blog', blogRoute)
-app.use('/api/v1/user', userRoute);
-app.use('/api/v1/order', userRoute);
+app.use('/api/v1/', tourRoute);
+app.use('/api/v1/', blogRoute)
+app.use('/api/v1/', userRoute);
+app.use('/api/v1/', userRoute);
 
 app.use(errorMiddleware)
 module.exports = app;
