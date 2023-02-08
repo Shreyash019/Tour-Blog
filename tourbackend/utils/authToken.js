@@ -42,6 +42,7 @@ exports.isUserAuthenticated = CatchAsync( async(req, res, next)=>{
 // Guide
 exports.isUserGuide = (...roles)=>{
     return (req, res, next)=>{
+        console.log(req.user)
         if(!roles.includes(req.user.role)){
             return next(new ErrorHandler(`Role: ${req.user.role} is not allowed to access this resouce.`, 403))
         }
@@ -51,10 +52,11 @@ exports.isUserGuide = (...roles)=>{
 
 //2
 // Admin
-exports.isUserAdmin = (...master)=>{
+exports.isUserAdmin = (...admin)=>{
     return (req, res, next)=>{
-        if(!master.includes(req.user.admin)){
-            return next(new ErrorHandler(`Role: ${req.user.role} is not allowed to access this resouce.`, 403))
+        console.log(req.user)
+        if(!admin.includes(req.user.admin)){
+            return next(new ErrorHandler(`Role: ${req.user.admin} is not allowed to access this resouce.`, 403))
         }
         next()
     }

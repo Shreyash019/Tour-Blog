@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const tourRoute = require('./routes/tourRoutes');
 const blogRoute = require('./routes/blogRoute')
 const userRoute = require('./routes/userRoutes');
+const orderRoute = require('./routes/orderRoute')
 const errorMiddleware = require('./middleware/error');
 
 // Configuration
@@ -19,7 +20,7 @@ app.get('/api/v1/', (req, res)=>{
 app.use('/api/v1/', tourRoute);
 app.use('/api/v1/', blogRoute)
 app.use('/api/v1/', userRoute);
-app.use('/api/v1/', userRoute);
+app.use('/api/v1/', orderRoute);
 
 app.use(errorMiddleware)
 module.exports = app;

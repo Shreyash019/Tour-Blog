@@ -23,12 +23,12 @@ router.route('/user/account/delete').delete(authToken.isUserAuthenticated, userC
 router.route('/admin/users').get(authToken.isUserAuthenticated, authToken.isUserAdmin("master"), userController.getAllUserAvailableInSystemByAdmin);
 // All tour will be fetched from tour route
 router.route('/admin/user/:id')
-    .get(authToken.isUserAdmin("master"), userController.getSingleUserDetailByAdmin)
-    .put(authToken.isUserAdmin("master"), userController.updateUserAccountAvailableInSystemByAdmin)
-    .delete(authToken.isUserAdmin("master"), userController.deleteUserAccountFromSystemByAdmin);
+    .get(authToken.isUserAuthenticated, authToken.isUserAdmin("master"), userController.getSingleUserDetailByAdmin)
+    .put(authToken.isUserAuthenticated, authToken.isUserAdmin("master"), userController.updateUserAccountAvailableInSystemByAdmin)
+    .delete(authToken.isUserAuthenticated,authToken.isUserAdmin("master"), userController.deleteUserAccountFromSystemByAdmin);
 router.route('/admin/tour/:id')
-    .get(authToken.isUserAdmin("master"), userController.getSingleTourDetailByAdmin)
-    .put(authToken.isUserAdmin("master"), userController.updateTourAvailableInSystemByAdmin)
-    .delete(authToken.isUserAdmin("master"), userController.deleteTourFromSystemByAdmin);
+    .get(authToken.isUserAuthenticated, authToken.isUserAdmin("master"), userController.getSingleTourDetailByAdmin)
+    .put(authToken.isUserAuthenticated, authToken.isUserAdmin("master"), userController.updateTourAvailableInSystemByAdmin)
+    .delete(authToken.isUserAuthenticated, authToken.isUserAdmin("master"), userController.deleteTourFromSystemByAdmin);
 
 module.exports = router

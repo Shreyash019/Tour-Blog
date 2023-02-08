@@ -60,7 +60,7 @@ exports.updateATour = CatchAsync(async (req, res, next)=>{
     if(!fetchTour){
         return next(new ErrorHandler(`Tour doesn't exist`, 500))
     }
-    const tour = await TourModel.findByIdAndUpdate(req.params.id, req.body, {
+    const tour = await TourModel.findByIdAndUpdate({_id: req.params.id}, req.body, {
         new: true,
         runValidators: true,
         useFindAndModify: false
@@ -90,7 +90,7 @@ exports.deleteATour = CatchAsync(async (req, res, next)=>{
 
 
 // Get review of tour
-exports.getTourReview = CatchAsync(async (req, res, next)=>{
+exports.getTourReviews = CatchAsync(async (req, res, next)=>{
     const tour = await TourModel.findById(req.query.id);
     if(!tour){
         return next(new ErrorHandler(`Tour not found`, 404))

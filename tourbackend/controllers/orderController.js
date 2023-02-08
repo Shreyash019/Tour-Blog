@@ -1,5 +1,5 @@
 const OrderModel = require('../models/orderModel');
-const TourModel = require('../models/TourModel');
+const TourModel = require('../models/tourModel');
 const ErrorHandler = require('../utils/errorHandler');
 const CatchAsync = require('../middleware/catchAsync');
 
