@@ -1,0 +1,32 @@
+.main-container{
+    height: 1200px
+}
+
+.main-top-content{
+    height: 500px;
+    width: 100%;
+    float: left;
+    background-color: rgb(47, 47, 249);
+    clip-path: polygon(0 0, 100% 0, 100% 68%, 49% 78%, 0 69%);
+}   
+    .top-content{
+        text-align: center;
+    }
+        .top-content h4{
+            margin: 10% 0% 0% 0%;
+            font-size: 2.5em;
+            font-weight: 900;
+            color: white;
+        }
+.main-botton-content{
+    width: 100%;
+    height: 700px;
+    float: left;
+}
+    .botton-content{
+        text-align: center;
+    }
+    .botton-content p{
+        font-size: 1em;
+        color: black
+    }

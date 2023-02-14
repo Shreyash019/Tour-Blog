@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const cookieParser = require('cookie-parser');
+const cors = require('cors')
+app.use(cors({credentials: true, origin:`http://localhost:3000`}))
 const tourRoute = require('./routes/tourRoutes');
 const blogRoute = require('./routes/blogRoute')
 const userRoute = require('./routes/userRoutes');

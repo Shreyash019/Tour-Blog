@@ -1,0 +1,32 @@
+.user-auth-container{
+
+}
+    .user-auth-title{
+
+    }
+
+.user-auth-input-form{
+
+}
+    .user-auth-input-form form{
+
+    }
+    .user-auth-input-form input{
+        background-color: rgb(233, 241, 247);
+        width:35%;
+        height: 35px;
+        border: none;
+        margin: 0% 0% 2.5% 0%;
+        outline: none;
+        font-size: 1.1em;
+        text-align: center;
+    }
+    .user-auth-input-form button{
+        background-color: red;
+        height: 30px;
+        border: none;
+        padding: 0% 1.5%;
+        color: white;
+        font-weight: 900;
+        margin: 1% 0% 0% 0%;
+    }

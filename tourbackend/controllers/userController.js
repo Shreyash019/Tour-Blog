@@ -120,7 +120,7 @@ exports.setForgotPassword = CatchAsync(async(req, res, next)=>{
     try{
         await mail.sendEmail({
             email: user.email,
-            subject: `Ecommerce password recovery.`,
+            subject: `Tour&Blog password recovery.`,
             message,
         })
         res.status(200).json({

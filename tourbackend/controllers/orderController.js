@@ -79,7 +79,7 @@ exports.updateOrderStatusByGuide = CatchAsync( async(req, res, next)=>{
         await updateStocks(order.tour, order.quantity);
     });
     orders.orderStatus = req.body.status;
-    if(req.body.status === "Delivered"){
+    if(req.body.status === "Booked"){
         orders.deliverdAt = Date.now();
     }
     await orders.save({validateBeforSave: false});

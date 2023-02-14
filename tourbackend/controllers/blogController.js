@@ -12,10 +12,8 @@ exports.getAllUsersBlogPosted = CatchAsync(async(req, res, next)=>{
         }
         res.json({
             status: 'Success',
-            length: blogs.length,
-            data: {
-                blogs
-            }
+            totalBlogs: blogs.length,
+            blogs
         });
 })
 
@@ -60,6 +58,7 @@ exports.getSingleBlogCreatedByAuthUser = CatchAsync(async (req, res, next)=>{
 exports.createABlogByAuthUser = CatchAsync(async (req, res, next)=>{
     console.log(req.user.id)
     req.body.author = req.user.id;
+    req.body.authorName = req.user.name
     const blogger = await userModel.findById(req.user.id);
     console.log(blogger)
     const blog = await blogModel.create(req.body);
@@ -76,7 +75,6 @@ exports.createABlogByAuthUser = CatchAsync(async (req, res, next)=>{
 // Updating user blog
 exports.updateABlogOfAuthUser = CatchAsync(async (req, res, next)=>{
     let blogId = req.params.id;
-
     const blogexist = await blogModel.findOne({_id: blogId, author: req.user.id});
     if(!blogexist){
         return next(new ErrorHandler(`You are not authorized to update it.`, 404));

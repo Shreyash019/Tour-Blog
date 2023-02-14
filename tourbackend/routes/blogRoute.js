@@ -4,7 +4,7 @@ const blogController = require('./../controllers/blogController');
 const commentController = require('../controllers/commentController')
 const authToken = require('./../utils/authToken');
 
-router.route('/blog').get(blogController.getAllUsersBlogPosted);
+router.route('/blogs').get(blogController.getAllUsersBlogPosted);
 
 router.route('/blog/post').post(authToken.isUserAuthenticated, blogController.createABlogByAuthUser);
 
