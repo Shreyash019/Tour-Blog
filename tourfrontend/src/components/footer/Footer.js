@@ -10,10 +10,10 @@ const Footer = () => {
           <p>.</p>
         </div>
         <div className='main-footer-right'>
-          <p><Link to='/'>About</Link></p>
+          <p><Link to='/about'>About</Link></p>
           <p><Link to='/'>Contact</Link></p>
           <p><Link to='/'>Purpose</Link></p>
-          <p><a href='https://www.linkedin.com/in/shreyash-kumar-51sk998p1' target="_blank">Developer</a></p>
+          <p><a href='https://www.linkedin.com/in/shreyash-51sk998p1' target="_blank">Developer</a></p>
         </div>
       </div>
       <div className='sub-footer-container'>

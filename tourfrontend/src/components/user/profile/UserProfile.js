@@ -23,9 +23,12 @@ const UserProfile = () => {
       sendRequest().then((data)=> setUser(data.user))
     }, [])
   
-    const handleOnClick = ()=>{
+    const handleOnClickProfile = ()=>{
       history(`/profile/update/${user._id}`)
-      alert(`Edit Profile Clicked ${user._id} `)
+    }
+
+    const handleOnClickPassword = ()=>{
+      history(`/password/update/${user._id}`)
     }
     
     return (
@@ -37,7 +40,8 @@ const UserProfile = () => {
             <img src={demoImg}/>
           </div>
           <div className='profile-social-link'>
-          <button onClick={handleOnClick}>Edit Profile</button><br/><br/>
+          <button onClick={handleOnClickProfile}>Edit Profile</button> 
+          <button onClick={handleOnClickPassword}>Update Password</button><br/><br/>
             <h4>Social Sites</h4>
           </div>
         </div>
@@ -53,9 +57,7 @@ const UserProfile = () => {
             <p>Likes: 0</p><br/>
             <p>Views: 0</p>
           </div>
-          
         </div>
-        
       </div>
         }
       </>

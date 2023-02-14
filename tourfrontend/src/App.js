@@ -21,7 +21,7 @@ import TourUpdate from './components/main/tour/TourUpdate';
 import TourDelete from './components/main/tour/DeleteTour';
 import UserProfileUpdate from './components/user/profile/UserProfileUpdate';
 import ForgotPassword from './components/user/auth/ForgotPassword';
-
+import UpdatePassword from './components/user/auth/UpdatePassword';
 
 function App() {
   const isLoggedIn = useSelector(state=> state.isLoggedIn);
@@ -35,6 +35,7 @@ function App() {
         <Route exact path='/login' element={<SignIn/>}/>
         <Route exact path='/signup' element={<SignUp/>}/>
         <Route exact path='/password/forgot' element={<ForgotPassword/>}/>
+        <Route exact path='/password/update/:id' element={<UpdatePassword/>}/>
         <Route exact path='/profile' element={<UserProfile/>}/>
         <Route exact path='/profile/update/:id' element={<UserProfileUpdate/>}/>
 

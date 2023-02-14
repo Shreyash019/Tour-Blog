@@ -25,7 +25,7 @@ const SignIn = () => {
 
   const handleOnSubmit = (e) =>{
     e.preventDefault();
-    sendRequest().then(()=>dispatch(authActions.login())).then(()=>history('/profile'));
+    sendRequest().then(()=>dispatch(authActions.login())).then(()=>history('/'));
   }
 
   const sendRequest = async()=>{
