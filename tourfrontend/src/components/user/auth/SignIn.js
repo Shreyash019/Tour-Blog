@@ -1,9 +1,10 @@
 import React, {useState}  from 'react'
 import axios from 'axios';
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { useDispatch} from 'react-redux';
 import { authActions } from '../../../store';
 import './sign.css'
+import logImg from '../../img/logon.png'
 
 const SignIn = () => {
 
@@ -24,8 +25,7 @@ const SignIn = () => {
 
   const handleOnSubmit = (e) =>{
     e.preventDefault();
-    // console.log(user)
-    sendRequest().then(()=>dispatch(authActions.login())).then(()=>history('/homepage'));
+    sendRequest().then(()=>dispatch(authActions.login())).then(()=>history('/profile'));
   }
 
   const sendRequest = async()=>{
@@ -34,21 +34,27 @@ const SignIn = () => {
       password: user.password
     }).catch(err=>console.log(err))
     const data = await res.token;
-    console.log(`Data recieved: ${data}`)
     return data
   }
 
   return (
     <div className='user-auth-container'>
-      <div className='user-auth-title'>
-        <h2>Sign In</h2>
-      </div><br/><br/>
-      <div className='user-auth-input-form'>
-        <form onSubmit={handleOnSubmit}>
-          <input type="email" name='email' value={user.email} onChange={handleOnChange}  placeholder='Email'/><br/>
-          <input type="password" name='password' value={user.password} onChange={handleOnChange} placeholder='Password'/><br/>
-          <button>Log In</button>
-        </form>
+      <div className='sign-left'>
+        <img src={logImg}/>
+      </div>
+      <div className='sign-right'>
+        <div className='user-auth-title'>
+          <h2>Sign In</h2>
+        </div><br/><br/>
+        <div className='user-auth-input'>
+          <form onSubmit={handleOnSubmit}>
+            <input type="email" name='email' value={user.email} onChange={handleOnChange}  placeholder='Email' autoComplete="off"/><br/>
+            <input type="password" name='password' value={user.password} onChange={handleOnChange} placeholder='Password' autoComplete="off"/><br/>
+            <button>Log In</button><br/><br/><br/>
+            <p> <Link to='/password/forgot'>Forgot Password</Link></p>
+          </form><br/>
+          <p>Don't have a account! <Link to='/signup'>SignUp</Link></p>
+        </div>
       </div>
     </div>
   )

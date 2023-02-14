@@ -5,7 +5,7 @@ const MainTop = () => {
   return (
     <div className='main-top-content'>
         <div className='top-content'>
-            <h4>Welcome to our website</h4>
+            <h4>Welcome to our Tour & Blog website</h4>
         </div>
     </div>
   )

@@ -1,11 +1,21 @@
 import React from 'react'
 
 const ShowBlogs = ({id, blogSummary, blogImg, author}) => {
+
+  const handleOnCLick = ()=>{
+    alert(`You clicked ${id}`)
+  }
+  
   return (
-    <div key={id}>
-        <p>{blogSummary}</p>
-        <p>{blogImg}</p>
-        <p>{author}</p>
+    <div key={id} className='blog-card' onClick={handleOnCLick}>
+      <h4>{author}</h4>
+      <p>{blogSummary}</p>
+      <img src={blogImg}/>
+      <div>
+        <button>Like</button>
+        <button>Dislike</button>
+        <span>Comment</span>
+      </div>
     </div>
   )
 }

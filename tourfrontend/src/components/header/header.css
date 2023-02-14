@@ -1,5 +1,6 @@
 .header-container{
     background-color: rgb(47, 47, 249);
+    background-image: linear-gradient(to right top, blue, purple);
     width: 100%;
     min-height: 50px;
 }
@@ -24,13 +25,12 @@
 
 a{
     color: rgb(255, 255, 255);
-    font-size: 1.2em;;
+    font-size: 1.1em;;
     font-weight: 900;
-    padding: 2% 5%;
+    padding: 0% 5%;
     text-decoration: none;
     
 }
 a:hover{
-    color:rgb(255, 252, 198);
-    font-size: 1.21em;
+    color:aqua;
 }

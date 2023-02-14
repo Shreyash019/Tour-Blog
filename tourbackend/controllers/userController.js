@@ -94,7 +94,6 @@ exports.resetUserPassword = CatchAsync(async(req, res, next)=>{
     user.password = req.body.password;
     user.resetPasswordToken = undefined;
     user.resetPasswordExpire = undefined;
-
     await user.save()
     authToken.sendToken(user, 200, res)
 })
@@ -102,10 +101,17 @@ exports.resetUserPassword = CatchAsync(async(req, res, next)=>{
 
 // User password forgot 
 exports.setForgotPassword = CatchAsync(async(req, res, next)=>{
+    console.log(req.body)
     const user = await UserModel.findOne({email: req.body.email})
     console.log(user)
 
     if(!user){
+        
+        console.log('No')
+        res.status(200).json({
+            success: false,
+            message: `User doesn't exist with id ${req.body.email}.`
+        })
         return next(new ErrorHandler("User not found", 404));
     }
     // Get ResetPasswordToken
@@ -125,7 +131,7 @@ exports.setForgotPassword = CatchAsync(async(req, res, next)=>{
         })
         res.status(200).json({
             success: true,
-            message: `Email sent to ${user.email} successfully`
+            message: `Email send to ${user.email}.`
         })
     } catch(err){
         user.resetPasswordToken = undefined;

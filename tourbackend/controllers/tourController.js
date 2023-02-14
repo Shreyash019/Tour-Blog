@@ -20,9 +20,7 @@ exports.getAllTours = CatchAsync(async (req, res, next)=>{
         status: "Success",
         length: tours.length,
         Number_of_Tours: tourCount,
-        data: {
-            tours
-        }
+        tours
     })
 });
 

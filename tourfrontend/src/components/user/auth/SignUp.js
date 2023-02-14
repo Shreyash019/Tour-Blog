@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import axios from 'axios';
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import './sign.css';
+import logImg from '../../img/logon.png'
 
 const SignUp = () => {
   const history = useNavigate()
@@ -23,7 +24,7 @@ const SignUp = () => {
     e.preventDefault();
     // console.log(user)
     // Sending request
-    sendRequest().then(()=>history('/homepage'));
+    sendRequest().then(()=>history('/profile'));
   }
 
   const sendRequest = async()=>{
@@ -39,17 +40,25 @@ const SignUp = () => {
 
   return (
     <div className='user-auth-container'>
-      <div className='user-auth-title'>
-        <h2>Sign Up</h2>
-      </div><br/><br/>
-      <div className='user-auth-input-form'>
-        <form onSubmit={handleOnSubmit}>
-        <input type="text" name='name' value={user.name} onChange={handleOnChange} placeholder='Name'/><br/>
-          <input type="email" name='email' value={user.email} onChange={handleOnChange} placeholder='Email'/><br/>
-          <input type="password" name='password' value={user.password} onChange={handleOnChange} placeholder='Password'/><br/>
-          <button>Sign Up</button>
-        </form>
+      <div className='sign-left'>
+        <img src={logImg}/>
       </div>
+      <div className='sign-right'>
+        <div className='user-auth-title'>
+          <h2>Sign Up</h2>
+        </div><br/><br/>
+        <div className='user-auth-input'>
+          <form onSubmit={handleOnSubmit}>
+          <input type="text" name='name' value={user.name} onChange={handleOnChange} placeholder='Name' autoComplete="off"/><br/>
+            <input type="email" name='email' value={user.email} onChange={handleOnChange} placeholder='Email' autoComplete="off"/><br/>
+            <input type="password" name='password' value={user.password} onChange={handleOnChange} placeholder='Password' autoComplete="off"/><br/>
+            <button>Sign Up</button>
+            
+          </form><br/>
+          <p>Already have a account! <Link to='/login'>SignIn</Link></p>
+        </div>
+      </div>
+
     </div>
   )
 }

@@ -31,14 +31,18 @@ const Header = () => {
         </div>
         <div className='header-navopt'>
           {
-            isLoggedIn && <><Link to='/blogs'>Blogs</Link></>
+            isLoggedIn && 
+            <>
+              <Link to='/tours'>Tours</Link>
+              <Link to='/blogs'>Blogs</Link>
+            </>
           }
-          <Link to='/about'>About</Link>
+          <Link to='/profile'>Profile</Link>
           { 
             !isLoggedIn && 
             <>
               <Link to='/login'>SignIn</Link>
-              <Link to='/singup'>SignUp</Link> 
+              <Link to='/signup'>SignUp</Link> 
             </>
           }
 

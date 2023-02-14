@@ -1,32 +1,66 @@
 .user-auth-container{
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    width:70%;
+    height: auto;
+    min-height: 500px;
+    margin: 3% 15%;
+    border-radius: 20px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
 
+.sign-left{
+    width:50%;
+    float:left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(245, 245, 230);
+    border-radius: 20px 0px 0px 20px;
+    min-height: 500px;
+}
+    .sign-left img{
+        width:70%;
+        height:auto;
+        margin-top: 2%;
+        align-items: center;
+    }
+
+.sign-right{
+    width:50%;
+    float:left;
 }
     .user-auth-title{
-
+        margin:15% 0% 1% 0%;
+    }
+    .user-auth-input form{
+        margin: 2% 0%;
     }
 
-.user-auth-input-form{
-
-}
-    .user-auth-input-form form{
-
-    }
-    .user-auth-input-form input{
-        background-color: rgb(233, 241, 247);
-        width:35%;
-        height: 35px;
+    .user-auth-input input{
+        background-color: rgb(221, 233, 244);
+        width:60%;
+        height: 30px;
         border: none;
-        margin: 0% 0% 2.5% 0%;
+        margin: 2% 0% 2% 0%;
         outline: none;
-        font-size: 1.1em;
+        font-size: 0.9em;
         text-align: center;
+        border-radius: 5px;
     }
-    .user-auth-input-form button{
+    .user-auth-input a{
+        color: blue;
+        font-size: 1em;
+        font-weight: 400;
+        margin: 0%;
+    }
+    .user-auth-input button{
         background-color: red;
         height: 30px;
         border: none;
-        padding: 0% 1.5%;
+        padding: 0% 2%;
         color: white;
         font-weight: 900;
-        margin: 1% 0% 0% 0%;
+        margin: 2% 0% 0% 0%;
+        border-radius: 5px;;
     }

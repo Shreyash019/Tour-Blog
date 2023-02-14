@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import './style/blogs.css';
 import ShowBlogs from './ShowBlogs';
 axios.defaults.withCredentials = true;
+
 
 const BlogHome = () => {
     const [blogs, setBlogs] = useState();
@@ -19,7 +21,6 @@ const BlogHome = () => {
     }
 
     useEffect(()=>{
-        
         sendRequest().then((data)=> {
             setLength(data.totalBlogs)
             setBlogs(data.blogs)}
@@ -28,20 +29,29 @@ const BlogHome = () => {
     
   return (
     <>
-    <h1>Blogs:</h1>
-    <div>
-      {blogs &&
-        blogs.map((blog, index) => (
-            <>
-                <ShowBlogs
-                    id={blog._id}
-                    blogSummary={blog.blogSummary}
-                    blogImg={blog.blogImg}
-                    author={blog.authorName}
-                />
-            </>
+    <div className='blog-container'>
+      <div className='blog-left-container'>
+        <p>Post Blog</p>
+        <div className='blog-post-new'>
+          <form>
+            <input type='text'/><br/>
+            <input type='image'/><br/>
+            <button>Post</button>
+          </form>
+        </div>
+      </div>
+      <div className='blog-right-container'>
+        {blogs && blogs.map((blog, index) => (
+          <>
+          <ShowBlogs 
+            id={blog._id}
+            blogSummary={blog.blogSummary}
+            blogImg={blog.blogImg}
+            author={blog.authorName}
+          />
+          </>
         ))}
-        <p>{bloglength}</p>
+      </div>
     </div>
     </>
   )
