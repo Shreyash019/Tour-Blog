@@ -1,6 +1,6 @@
 .header-container{
     background-color: rgb(47, 47, 249);
-    background-image: linear-gradient(to right top, blue, purple);
+    background-image: linear-gradient(to right top,  rgb(47, 47, 249), purple);
     width: 100%;
     min-height: 50px;
 }

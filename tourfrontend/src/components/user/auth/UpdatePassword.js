@@ -46,7 +46,7 @@ const UpdatePassword = () => {
   return (
     <div className='user-auth-container'>
     <div className='sign-left'>
-      <img src={logImg}/>
+      <img src={logImg} alt='Default'/>
     </div>
     <div className='sign-right'>
       <div className='user-auth-title'>
@@ -54,7 +54,7 @@ const UpdatePassword = () => {
       </div><br/><br/>
       <div className='user-auth-input'>
         <form onSubmit={handleOnSubmit}>
-        <input type="password" name='oldPassword' value={user.oldPassword} onChange={handleOnChange}  placeholder='Old Password' autoComplete="off"/><br/>
+          <input type="password" name='oldPassword' value={user.oldPassword} onChange={handleOnChange}  placeholder='Old Password' autoComplete="off"/><br/>
           <input type="password" name='newPassword' value={user.newPassword} onChange={handleOnChange}  placeholder='New Password' autoComplete="off"/><br/>
           <input type="password" name='confirmPassword' value={user.confirmPassword} onChange={handleOnChange} placeholder='Confirm Password' autoComplete="off"/><br/>
           <button>Update Password</button><br/><br/><br/>

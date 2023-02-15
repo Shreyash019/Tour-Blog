@@ -8,7 +8,6 @@ axios.defaults.withCredentials = true;
 const TourHome = () => {
 
   const [tours, setTours] = useState();
-  const [tourLength, setTourLength] = useState();
 
   const sendRequest = async ()=>{
     const res = await axios.get(`http://localhost:5000/api/v1/tours`, {
@@ -23,7 +22,6 @@ const TourHome = () => {
 
   useEffect(()=>{   
     sendRequest().then((data)=> {
-        setTourLength(data.Number_of_Tours)
         setTours(data.tours)}
         )
   },[])

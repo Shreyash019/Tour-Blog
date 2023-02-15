@@ -30,14 +30,15 @@ const Header = () => {
             <Link to='/'>Home</Link>
         </div>
         <div className='header-navopt'>
+        <Link to='/tours'>Tours</Link>
           {
             isLoggedIn && 
             <>
-              <Link to='/tours'>Tours</Link>
               <Link to='/blogs'>Blogs</Link>
+              <Link to='/profile'>Profile</Link>
             </>
           }
-          <Link to='/profile'>Profile</Link>
+          
           { 
             !isLoggedIn && 
             <>

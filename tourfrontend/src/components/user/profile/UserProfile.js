@@ -24,6 +24,7 @@ const UserProfile = () => {
     }, [])
   
     const handleOnClickProfile = ()=>{
+      alert(user._id)
       history(`/profile/update/${user._id}`)
     }
 
@@ -37,7 +38,7 @@ const UserProfile = () => {
       <div className='profile-container'>
         <div className='profile-left'>''
           <div className='profile-image'>
-            <img src={demoImg}/>
+            <img src={demoImg} alt='Default'/>
           </div>
           <div className='profile-social-link'>
           <button onClick={handleOnClickProfile}>Edit Profile</button> 
@@ -49,8 +50,8 @@ const UserProfile = () => {
           <div className='user-details'>
             <h2>{user.name}</h2><br/><br/><br/>
             <p>Email: {user.email}</p><br/>
-            <p>Contact: 8912034567</p><br/>
-            <p>Address: IN</p><br/>
+            <p>Contact: {user.contact}</p><br/>
+            <p>Address: {user.address}</p><br/>
             <p>DOB: 19 Jan</p><br/>
             <p>Blogs: 0</p><br/>
             <p>Tours: 0</p><br/>

@@ -23,6 +23,9 @@ const userSchema = mongoose.Schema({
     address: {
         type: String,
     },
+    contact: {
+        type: Number,
+    },
     profileImage: {
         public_id: {
             type: String,

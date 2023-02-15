@@ -9,7 +9,6 @@ import logImg from '../../img/logon.png'
 const SignIn = () => {
 
   const dispatch = useDispatch();
-
   const history = useNavigate()
   const [user, setUser] = useState({
     email:'',
@@ -40,7 +39,7 @@ const SignIn = () => {
   return (
     <div className='user-auth-container'>
       <div className='sign-left'>
-        <img src={logImg}/>
+        <img src={logImg} alt='Default'/>
       </div>
       <div className='sign-right'>
         <div className='user-auth-title'>

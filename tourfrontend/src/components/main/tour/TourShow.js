@@ -1,5 +1,5 @@
 import React from 'react'
-import {useNavigate, useParams} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 const TourShow = ({id, data}) => {
   const history = useNavigate();
@@ -11,7 +11,7 @@ const TourShow = ({id, data}) => {
   return (
   <div key={data._id} className='tour-card' onClick={handleOnClick}>
       <h4>{data.name}</h4>
-      <img src={data.image}/>
+      <img src={data.image} alt='Default'/>
       <p>Summary: {data.description}</p>
       <p>Price: {data.price}</p>
       <p>Start Date: </p>

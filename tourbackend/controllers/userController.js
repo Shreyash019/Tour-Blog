@@ -146,7 +146,7 @@ exports.setForgotPassword = CatchAsync(async(req, res, next)=>{
 exports.getUserProfile = CatchAsync(async(req, res, next)=>{
     const user = await UserModel.findById(req.user.id);
     res.status(200).json({
-        suncess: true,
+        sncess: true,
         user
     })
 })
@@ -156,7 +156,8 @@ exports.getUserProfile = CatchAsync(async(req, res, next)=>{
 exports.updateUserProfile = CatchAsync(async(req, res, next)=>{
     const newUserData = {
         name: req.body.name,
-        email: req.body.email,
+        address: req.body.address,
+        contact: req.body.contact
     }
 
     const user = await UserModel.findByIdAndUpdate(req.user.id, newUserData, {
@@ -165,7 +166,7 @@ exports.updateUserProfile = CatchAsync(async(req, res, next)=>{
         userFindAndModify: true
     });
     res.status(200).json({
-        suncess: true,
+        sucess: true,
         user
     })
 })

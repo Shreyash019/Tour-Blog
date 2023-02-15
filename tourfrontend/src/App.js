@@ -22,6 +22,8 @@ import TourDelete from './components/main/tour/DeleteTour';
 import UserProfileUpdate from './components/user/profile/UserProfileUpdate';
 import ForgotPassword from './components/user/auth/ForgotPassword';
 import UpdatePassword from './components/user/auth/UpdatePassword';
+import ResetPassword from './components/user/auth/ResetPassword';
+import Contact from './components/contact/Contact'
 
 function App() {
   const isLoggedIn = useSelector(state=> state.isLoggedIn);
@@ -32,9 +34,12 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Main/>}/>
         <Route exact path='/about' element={<About/>}/>
+        <Route exact path='/contact' element={<Contact/>}/>
+
         <Route exact path='/login' element={<SignIn/>}/>
         <Route exact path='/signup' element={<SignUp/>}/>
         <Route exact path='/password/forgot' element={<ForgotPassword/>}/>
+        <Route exact path='/password/reset' element={<ResetPassword/>}/>
         <Route exact path='/password/update/:id' element={<UpdatePassword/>}/>
         <Route exact path='/profile' element={<UserProfile/>}/>
         <Route exact path='/profile/update/:id' element={<UserProfileUpdate/>}/>
@@ -44,8 +49,8 @@ function App() {
         <Route exact path='/blogs' element={<BlogHome/>}/>
         <Route exact path='/blog' element={<SingleBlog/>}/>
         <Route exact path='/blog/create' element={<BlogPost/>}/>
-        <Route exact path='/blogs' element={<BlogUpdate/>}/>
-        <Route exact path='/blogs' element={<BlogDelete/>}/>
+        <Route exact path='/blog/update' element={<BlogUpdate/>}/>
+        <Route exact path='/blog/delete' element={<BlogDelete/>}/>
 
         <Route exact path='/tours' element={<TourHome/>}/>
         <Route exact path='/tour/:id' element={<SingleTour/>}/>
