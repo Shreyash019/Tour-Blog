@@ -1,15 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
-import './profile.css';
 import {useNavigate} from 'react-router-dom';
-import { useDispatch} from 'react-redux';
-import { authActions } from '../../../store';
+// import { useDispatch} from 'react-redux';
+// import { authActions } from '../../../store';
 import demoImg from '../../img/demouser.png';
-axios.defaults.withCredentials = true;
+import './profile.css';
+
 
 const UserProfileUpdate = () => {
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const history = useNavigate()
   const [user, setUser] = useState({
     name:'',
@@ -26,24 +25,24 @@ const UserProfileUpdate = () => {
 
   const handleOnSubmit = (e) =>{
     e.preventDefault();
-    sendRequest().then(()=>dispatch(authActions.login())).then(()=>history('/profile'));
+    // sendRequest().then(()=>dispatch(authActions.login())).then(()=>history('/profile'));
   }
 
-  const sendRequest = async ()=>{
-    const res = await axios.put(`http://localhost:5000/api/v1/user/update/profile`, {
-      name: user.name,
-      address: user.address,
-      contact: user.contact
-    }, {
-      withCredentials: true
-    }).catch(err=>console.log(err))
-    const data = await res.data;
-    console.log(data)
-    return data
-  }
+  // const sendRequest = async ()=>{
+  //   const res = await axios.put(`http://localhost:5000/api/v1/user/update/profile`, {
+  //     name: user.name,
+  //     address: user.address,
+  //     contact: user.contact
+  //   }, {
+  //     withCredentials: true
+  //   }).catch(err=>console.log(err))
+  //   const data = await res.data;
+  //   console.log(data)
+  //   return data
+  // }
 
   useEffect(()=>{
-    sendRequest().then((data)=> setUser(data.user))
+    // sendRequest().then((data)=> setUser(data.user))
   }, [])
 
   const handleOnClickProfile = ()=>{

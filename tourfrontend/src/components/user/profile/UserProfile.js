@@ -1,26 +1,18 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
 import './profile.css';
 import demoImg from '../../img/demouser.png';
 import {useNavigate} from 'react-router-dom';
-axios.defaults.withCredentials = true;
+import { useDispatch, useSelector } from 'react-redux';
+import {clearErrors} from '../../../utils/actions/UserAction';
 
 const UserProfile = () => {
-    const [user, setUser] = useState();
-    const [isLoading, setLoading] = useState(true)
+    // const [user, setUser] = useState();
+    // const [isLoading, setLoading] = useState(true)
     const history = useNavigate();
-    const sendRequest = async ()=>{
-      const res = await axios.get(`http://localhost:5000/api/v1/user/profile`, {
-        withCredentials: true
-      }).catch(err=>console.log(err))
-      const data = await res.data;
-      console.log(data)
-      setLoading(false)
-      return data
-    }
+    const dispatch = useDispatch();
+    const { error, user, isAuthenticated } = useSelector(state=> state.user);
   
     useEffect(()=>{
-      sendRequest().then((data)=> setUser(data.user))
     }, [])
   
     const handleOnClickProfile = ()=>{
@@ -31,10 +23,17 @@ const UserProfile = () => {
     const handleOnClickPassword = ()=>{
       history(`/password/update/${user._id}`)
     }
+
+    useEffect(()=>{
+      dispatch(clearErrors);
+      if(!isAuthenticated){
+        history('/')
+      }
+    },[dispatch, error, isAuthenticated])
     
     return (
       <>
-      {isLoading?<>Loading...</>: 
+      {/* {isLoading?<>Loading...</>:  */}
       <div className='profile-container'>
         <div className='profile-left'>''
           <div className='profile-image'>
@@ -53,14 +52,12 @@ const UserProfile = () => {
             <p>Contact: {user.contact}</p><br/>
             <p>Address: {user.address}</p><br/>
             <p>DOB: 19 Jan</p><br/>
-            <p>Blogs: 0</p><br/>
-            <p>Tours: 0</p><br/>
-            <p>Likes: 0</p><br/>
-            <p>Views: 0</p>
+            <p>Blogs: {user.blogs.length}</p><br/>
+            <p>Role: {user.role}</p>
           </div>
         </div>
       </div>
-        }
+        {/* } */}
       </>
     )
 }

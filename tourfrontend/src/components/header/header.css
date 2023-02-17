@@ -23,7 +23,7 @@
     text-align: left;
 }
 
-a{
+.header-link{
     color: rgb(255, 255, 255);
     font-size: 1.1em;;
     font-weight: 900;
@@ -31,6 +31,6 @@ a{
     text-decoration: none;
     
 }
-a:hover{
+.header-link:hover{
     color:aqua;
 }

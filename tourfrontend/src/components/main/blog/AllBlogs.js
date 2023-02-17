@@ -2,10 +2,12 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import './style/blogs.css';
 import ShowBlogs from './ShowBlogs';
+import CreateBlog from './CreateBlog';
 axios.defaults.withCredentials = true;
 
 
 const BlogHome = () => {
+    const [isloading, setLoading] = useState(true)
     const [blogs, setBlogs] = useState();
 
     const sendRequest = async ()=>{
@@ -13,44 +15,35 @@ const BlogHome = () => {
         withCredentials: true
         }).catch(err=>console.log(err))
         const data = await res.data;
-        console.log(data)
-        console.log(data.status)
-        console.log(typeof(data))
+       console.log(data)
         return data
     }
 
     useEffect(()=>{
-        sendRequest().then((data)=> {
-            setBlogs(data.blogs)}
-            )
+      sendRequest().then((data)=> {
+          setBlogs(data.blogs)})
+      if(sendRequest.length){
+        sendRequest()
+      }
     },[])
     
   return (
     <>
-    <div className='blog-container'>
+    {<div className='blog-container'>
       <div className='blog-left-container'>
-        <p>Post Blog</p>
-        <div className='blog-post-new'>
-          <form>
-            <input type='text'/><br/>
-            <input type='image' alt='Default'/><br/>
-            <button>Post</button>
-          </form>
-        </div>
+        <CreateBlog/>
       </div>
       <div className='blog-right-container'>
         {blogs && blogs.map((blog, index) => (
           <>
-          <ShowBlogs 
+          <ShowBlogs
             id={blog._id}
-            blogSummary={blog.blogSummary}
-            blogImg={blog.blogImg}
-            author={blog.authorName}
+            blog={blog}
           />
           </>
         ))}
       </div>
-    </div>
+    </div>}
     </>
   )
 }

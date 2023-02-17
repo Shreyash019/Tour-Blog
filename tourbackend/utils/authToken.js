@@ -21,6 +21,7 @@ exports.sendToken = (user, statusCode, res)=>{
 
     res.status(statusCode).json({
         sucess: true,
+        user,
         token,
     })
 }

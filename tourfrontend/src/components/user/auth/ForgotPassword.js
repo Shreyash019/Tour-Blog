@@ -1,11 +1,11 @@
-import React, {useState}  from 'react'
-import axios from 'axios';
-import {Link, useNavigate} from 'react-router-dom';
+import React, {useState}  from 'react';
+import {Link} from 'react-router-dom';
+// import {Link, useNavigate} from 'react-router-dom';
 import './sign.css'
 import logImg from '../../img/logon.png'
 
 const ForgotPassword = () => {
-    const history = useNavigate()
+    // const history = useNavigate()
     const [user, setUser] = useState({
       email:'',
       password: ''
@@ -20,27 +20,27 @@ const ForgotPassword = () => {
   
     const handleOnSubmit = (e) =>{
       e.preventDefault();
-      sendRequest()
-        .then((data)=>{
-            alert(data.message)
-            console.log(data)
-            if(!data.success===false){
-                history('/login')
-            } else{
-                history('/signup')
-            }
+      // sendRequest()
+      //   .then((data)=>{
+      //       alert(data.message)
+      //       console.log(data)
+      //       if(!data.success===false){
+      //           history('/login')
+      //       } else{
+      //           history('/signup')
+      //       }
             
-        });
+      //   });
     }
   
-    const sendRequest = async()=>{
-      const res = await axios.post(`http://localhost:5000/api/v1/user/password/forgot`, {
-        email: user.email,
-      }).catch(err=>console.log(err))
-      const data = await res.data;
-      console.log(data.message)
-      return data
-    }
+    // const sendRequest = async()=>{
+    //   const res = await axios.post(`http://localhost:5000/api/v1/user/password/forgot`, {
+    //     email: user.email,
+    //   }).catch(err=>console.log(err))
+    //   const data = await res.data;
+    //   console.log(data.message)
+    //   return data
+    // }
   return (
     <div className='user-auth-container'>
     <div className='sign-left'>

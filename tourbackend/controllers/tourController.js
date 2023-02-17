@@ -5,7 +5,7 @@ const ApiFeatures = require('../utils/apiFeatures');
 
 // Getting all tours
 exports.getAllTours = CatchAsync(async (req, res, next)=>{
-    const resultPerPage = 10;
+    const resultPerPage = 3
 
     // Tour count
     const tourCount = await TourModel.countDocuments();
@@ -19,8 +19,9 @@ exports.getAllTours = CatchAsync(async (req, res, next)=>{
     res.status(200).json({
         status: "Success",
         length: tours.length,
-        Number_of_Tours: tourCount,
-        tours
+        tourCount,
+        tours,
+        resultPerPage
     })
 });
 
@@ -33,9 +34,7 @@ exports.getSingleTour = CatchAsync(async (req, res, next)=>{
     }
     res.status(200).json({
         status: "Success",
-        data: {
-            tour
-        }
+        tour
     })
 })
 

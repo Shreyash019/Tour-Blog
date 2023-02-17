@@ -5,6 +5,7 @@ const ErrorHandler = require('../utils/errorHandler');
 const CatchAsync = require('../middleware/catchAsync');
 const authToken = require('../utils/authToken');
 const mail = require('../middleware/sendMail');
+const blogModel = require('../models/blogModel');
 
 
 // User Registrayion 
@@ -165,6 +166,9 @@ exports.updateUserProfile = CatchAsync(async(req, res, next)=>{
         runValidators: true,
         userFindAndModify: true
     });
+    const authorData = {
+        authorName: req.body.name
+    }
     res.status(200).json({
         sucess: true,
         user

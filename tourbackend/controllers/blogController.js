@@ -6,12 +6,12 @@ const CatchAsync = require('../middleware/catchAsync');
 
 // All users Blog(Blog Timeline)
 exports.getAllUsersBlogPosted = CatchAsync(async(req, res, next)=>{
-        const blogs = await blogModel.find()
+    let blogs = await blogModel.find().sort("-createdAt")
         if(!blogs){
             return next(new ErrorHandler(`Something went wrong.`, 404));
         }
         res.json({
-            status: 'Success',
+            status: true,
             totalBlogs: blogs.length,
             blogs
         });
@@ -57,8 +57,10 @@ exports.getSingleBlogCreatedByAuthUser = CatchAsync(async (req, res, next)=>{
 // Create a blog
 exports.createABlogByAuthUser = CatchAsync(async (req, res, next)=>{
     console.log(req.user.id)
+    console.log(req.body)
     req.body.author = req.user.id;
-    req.body.authorName = req.user.name
+    req.body.name = req.user.name
+    // req.body.authorName = req.user.name
     const blogger = await userModel.findById(req.user.id);
     console.log(blogger)
     const blog = await blogModel.create(req.body);
@@ -172,5 +174,18 @@ exports.blogToBeDislikeByUser = CatchAsync(async (req, res, next)=> {
     res.status(200).json({
         status: 'Success',
         data: blog
+    });
+})
+
+exports.getUserNameOftheBlog = CatchAsync(async(req, res, next)=>{
+    console.log(req.params.userId)
+    let name = await userModel.findById(req.params.userId)
+    if(!name){
+        return next(new ErrorHandler(`Something went wrong.`, 404));
+    }
+    console.log(name.name)
+    res.status(200).json({
+        status: 'Success',
+        name: user.name
     });
 })

@@ -8,15 +8,14 @@ const blogSchema = mongoose.Schema({
         type: String
     },
     author: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: [true, "Author is required"],
-    },
-    authorName: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: [true, "Author is required"],
-  },
+      required: [true, "Please Author is required"],
+    },
+    name: {
+      type: String,
+      required: [true, "Please Author is required"],
+    },
     comments: [
         {
           type: mongoose.Schema.Types.ObjectId,
@@ -41,6 +40,10 @@ const blogSchema = mongoose.Schema({
           ref: "NumViews",
         },
     ],
+    createdAt: {
+      type: Date,
+      default: Date.now
+  },
 })
 
 const blogModel = mongoose.model('blogModel', blogSchema)

@@ -2,47 +2,60 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import './style/tour.css';
 import TourShow from './TourShow';
+import {getTours} from '../../../utils/actions/tourActions';
+import {useSelector, useDispatch} from 'react-redux';
+import Pagination from 'react-js-pagination';
 axios.defaults.withCredentials = true;
 
 
 const TourHome = () => {
 
-  const [tours, setTours] = useState();
-
-  const sendRequest = async ()=>{
-    const res = await axios.get(`http://localhost:5000/api/v1/tours`, {
-    withCredentials: true
-    }).catch(err=>console.log(err))
-    const data = await res.data;
-    console.log(data.tours)
-    console.log(data.status)
-    console.log(typeof(data))
-    return data
-  }
+  const [currentPage, setCurrentPage] = useState(1)
+  const dispatch = useDispatch();
+  const {loading, errors, tours, tourCount, resultPerPage} = useSelector((state)=> state.tours)
 
   useEffect(()=>{   
-    sendRequest().then((data)=> {
-        setTours(data.tours)}
-        )
-  },[])
+    dispatch(getTours(currentPage))
+  },[dispatch, errors, currentPage])
 
+  const setCurrentPageNo = (e)=>{
+    setCurrentPage(e)
+  }
 
   return (
     <>
-    <div className='tour-container'>
-      <h2>Available Tours</h2>
-      <div className='tour-card-container'>
-        {tours && tours.map((tour, index) => (
-          <>
-            <TourShow
-              id={tour._id}
-              data={tour}
-            />
-          </>          
-        ))}<br/>
+    {loading ? 'Loading...': 
+      <div className='tour-container'>
+        <h2>Available Tours</h2>
+        <div className='tour-card-container'>
+          {tours && tours.map((tour, index) => (
+            <>
+              <TourShow
+                key={tour._id}
+                id={tour._id}
+                data={tour}
+              />
+            </>          
+          ))}<br/>
+        </div>
+        <div className='pagination'>
+          <Pagination
+          activePage={currentPage}
+          itemsCountPerPage={resultPerPage}
+          totalItemsCount={tourCount}
+          onChange={setCurrentPageNo}
+          prevPageText='Prev'
+          nextPageText='Next'
+          firstPageText='First' 
+          lastPageText='Last'
+          itemClass='page-item'
+          linkClass='page-link'
+          activeClass='pageItemActive'
+          activeLinkClass='pageLinkActive'
+          />
+        </div>
       </div>
-    </div>
-
+    }<br/><br/><br/><br/><br/><br/>
     </>
   )
 }

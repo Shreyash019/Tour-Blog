@@ -1,54 +1,55 @@
-import React from 'react'
-import {Link} from 'react-router-dom';
+import React, {useEffect, useState}  from 'react'
+import {Link, useNavigate} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {authActions} from '../../store'
-import axios from 'axios';
+import {logout, clearErrors} from '../../utils/actions/UserAction';
 import './header.css';
-axios.defaults.withCredentials = true;
 
 const Header = () => {
-  const dispatch = useDispatch()
-  const isLoggedIn = useSelector(state=> state.isLoggedIn);
+  const history = useNavigate();
+  const dispatch = useDispatch();
+  // const [isLoaded, setLoaded] = useState(true)
+  const { error, loading, isAuthenticated } = useSelector(state=> state.user);
 
-  const handleLogout =() =>{
-    sendLogoutRequest().then(()=> dispatch(authActions.logout()))
+  const handleLogout =(e) =>{
+    e.preventDefault();
+    dispatch(logout()).then(()=>history('/'))
   }
 
-  const sendLogoutRequest = async()=>{
-    const res = await axios.get(`http://localhost:5000/api/v1/user/logout`, null, {
-      withCredentials: true
-    })
-    if(res.status===200){
-      return res
+  useEffect(()=>{
+    dispatch(clearErrors);
+    if(isAuthenticated===false){
+      history('/')
     }
-    return new Error('Unable to logout');
-  }
+  },[dispatch, error, isAuthenticated])
+
 
   return (
+
+
     <div className='header-container'>
         <div className='header-title'>
-            <Link to='/'>Home</Link>
+            <Link className='header-link' to='/'>Home</Link>
         </div>
         <div className='header-navopt'>
-        <Link to='/tours'>Tours</Link>
+        <Link className='header-link' to='/tours'>Tours</Link>
           {
-            isLoggedIn && 
+            isAuthenticated && isAuthenticated ?
             <>
-              <Link to='/blogs'>Blogs</Link>
-              <Link to='/profile'>Profile</Link>
-            </>
+              <Link className='header-link' to='/blogs'>Blogs</Link>
+              <Link className='header-link' to='/profile'>Profile</Link>
+            </>: <></>
           }
           
           { 
-            !isLoggedIn && 
+            !isAuthenticated && 
             <>
-              <Link to='/login'>SignIn</Link>
-              <Link to='/signup'>SignUp</Link> 
+              <Link className='header-link' to='/login'>SignIn</Link>
+              <Link className='header-link' to='/signup'>SignUp</Link> 
             </>
           }
 
           {
-            isLoggedIn && <Link to='/' onClick={handleLogout}>Logout</Link>
+            isAuthenticated && <Link className='header-link' to='/' onClick={handleLogout}>Logout</Link>
           }
         </div>
     </div>

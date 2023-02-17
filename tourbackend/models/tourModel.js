@@ -17,7 +17,7 @@ const tourSchema = mongoose.Schema({
         type: Date,
         required: [true, 'Please provide tour end date.']
     },
-    image: [
+    images: [
         {
             public_id: {
                 type: String,
@@ -25,6 +25,7 @@ const tourSchema = mongoose.Schema({
             },
             url: {
                 type: String,
+                default: "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Ym9va3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
                 required: true
             }
         }

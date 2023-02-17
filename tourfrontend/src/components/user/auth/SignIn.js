@@ -1,61 +1,54 @@
-import React, {useState}  from 'react'
-import axios from 'axios';
+import React, {useEffect, useState}  from 'react'
 import {Link, useNavigate} from 'react-router-dom';
-import { useDispatch} from 'react-redux';
-import { authActions } from '../../../store';
+import { useDispatch, useSelector} from 'react-redux';
+import {login, clearErrors} from '../../../utils/actions/UserAction';
+import logImg from '../../img/logon.png';
 import './sign.css'
-import logImg from '../../img/logon.png'
+
 
 const SignIn = () => {
-
+  const history = useNavigate();
   const dispatch = useDispatch();
-  const history = useNavigate()
-  const [user, setUser] = useState({
-    email:'',
-    password: ''
-  })
-
-  const handleOnChange = (e)=>{
-    setUser(prev=>({
-      ...prev,
-      [e.target.name]: e.target.value
-    }))
-  }
+  const { error, loading, isAuthenticated } =  useSelector((state)=> state.user)
+  
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
 
   const handleOnSubmit = (e) =>{
     e.preventDefault();
-    sendRequest().then(()=>dispatch(authActions.login())).then(()=>history('/'));
+    dispatch(login(loginEmail, loginPassword))
   }
-
-  const sendRequest = async()=>{
-    const res = await axios.post(`http://localhost:5000/api/v1/user/login`, {
-      email: user.email,
-      password: user.password
-    }).catch(err=>console.log(err))
-    const data = await res.token;
-    return data
-  }
+  useEffect(()=>{
+    dispatch(clearErrors);
+    if(isAuthenticated){
+      history('/profile')
+    }
+  },[dispatch, error, isAuthenticated])
 
   return (
-    <div className='user-auth-container'>
-      <div className='sign-left'>
-        <img src={logImg} alt='Default'/>
-      </div>
-      <div className='sign-right'>
-        <div className='user-auth-title'>
-          <h2>Sign In</h2>
-        </div><br/><br/>
-        <div className='user-auth-input'>
-          <form onSubmit={handleOnSubmit}>
-            <input type="email" name='email' value={user.email} onChange={handleOnChange}  placeholder='Email' autoComplete="off"/><br/>
-            <input type="password" name='password' value={user.password} onChange={handleOnChange} placeholder='Password' autoComplete="off"/><br/>
-            <button>Log In</button><br/><br/><br/>
-            <p> <Link to='/password/forgot'>Forgot Password</Link></p>
-          </form><br/>
-          <p>Don't have a account! <Link to='/signup'>SignUp</Link></p>
+    <>{ loading ? 'Loading...':    
+      <>
+        <div className='user-auth-container'>
+          <div className='sign-left'>
+            <img src={logImg} alt='Default'/>
+          </div>
+          <div className='sign-right'>
+            <div className='user-auth-title'>
+              <h2>Sign In</h2>
+            </div><br/><br/>
+            <div className='user-auth-input'>
+              <form onSubmit={handleOnSubmit}>
+                <input type="email" name='email' value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)}  placeholder='Email' autoComplete="off"/><br/>
+                <input type="password" name='password' value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} placeholder='Password' autoComplete="off"/><br/>
+                <button>Log In</button><br/><br/><br/>
+                <p> <Link to='/password/forgot'>Forgot Password</Link></p>
+              </form><br/>
+              <p>Don't have a account! <Link to='/signup'>SignUp</Link></p>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </>
+    }</>
   )
 }
 
