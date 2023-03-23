@@ -1,9 +1,9 @@
 import React from 'react';
-import './main.css';
+import './styles/maintop.css';
 
 const MainTop = () => {
   return (
-    <div className='main-top-content'>
+    <div className='main-top-container'>
         <div className='top-content'>
             <h4>Welcome to our Tour & Blog website</h4>
         </div>

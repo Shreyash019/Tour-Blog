@@ -17,18 +17,18 @@ const tourSchema = mongoose.Schema({
         type: Date,
         required: [true, 'Please provide tour end date.']
     },
-    images: [
+    tourImage: [
         {
             public_id: {
-                type: String,
-                required: true
+              type: String,
+              required: true
             },
             url: {
                 type: String,
-                default: "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Ym9va3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
+                default: "https://deih43ym53wif.cloudfront.net/motorcycle-himalaya-india-shutterstock_1096379993-2_649b7de546.jpeg",
                 required: true
             }
-        }
+          },
     ],
     duration: {
         type: String,

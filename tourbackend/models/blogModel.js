@@ -5,7 +5,15 @@ const blogSchema = mongoose.Schema({
         type: String
     },
     blogImg: {
-        type: String
+      public_id: {
+        type: String,
+        required: true
+      },
+      url: {
+          type: String,
+          default: "https://deih43ym53wif.cloudfront.net/motorcycle-himalaya-india-shutterstock_1096379993-2_649b7de546.jpeg",
+          required: true
+      }
     },
     author: {
       type: mongoose.Schema.Types.ObjectId,

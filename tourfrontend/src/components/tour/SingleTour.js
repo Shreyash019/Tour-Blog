@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {useParams, useNavigate} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
-import {gettourDetails} from '../../../utils/actions/tourActions';
+import {gettourDetails} from '../../utils/actions/tourActions';
 import './style/singleTour.css';
 
 axios.defaults.withCredentials = true;

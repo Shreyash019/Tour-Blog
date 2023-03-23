@@ -16,6 +16,7 @@ router.route('/user/password/forgot').post(userController.setForgotPassword);
 // User Profile routes
 router.route('/user/profile').get(authToken.isUserAuthenticated ,userController.getUserProfile);
 router.route('/user/update/profile').put(authToken.isUserAuthenticated, userController.updateUserProfile)
+router.route('/user/update/image').put(authToken.isUserAuthenticated, userController.updateUserProfileImage)
 router.route('/user/account/delete').delete(authToken.isUserAuthenticated, userController.userAccountDelete)
 
 

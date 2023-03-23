@@ -2,14 +2,16 @@ const blogModel = require('./../models/blogModel');
 const userModel = require('./../models/userModel');
 const ErrorHandler = require('../utils/errorHandler');
 const CatchAsync = require('../middleware/catchAsync');
-
+const cloudinary = require('cloudinary');
 
 // All users Blog(Blog Timeline)
 exports.getAllUsersBlogPosted = CatchAsync(async(req, res, next)=>{
     let blogs = await blogModel.find().sort("-createdAt")
+    console.log(blogs)
         if(!blogs){
             return next(new ErrorHandler(`Something went wrong.`, 404));
         }
+        console.log(blogs)
         res.json({
             status: true,
             totalBlogs: blogs.length,
@@ -56,14 +58,28 @@ exports.getSingleBlogCreatedByAuthUser = CatchAsync(async (req, res, next)=>{
 
 // Create a blog
 exports.createABlogByAuthUser = CatchAsync(async (req, res, next)=>{
-    console.log(req.user.id)
-    console.log(req.body)
+
     req.body.author = req.user.id;
     req.body.name = req.user.name
+
+    const {blogSummary, author, name} = req.body
+    const myCloud = await cloudinary.v2.uploader.upload(req.body.blogImg, {
+        folder: "blogImg",
+        width:150,
+        crop: "scale"
+    })
     // req.body.authorName = req.user.name
     const blogger = await userModel.findById(req.user.id);
-    console.log(blogger)
-    const blog = await blogModel.create(req.body);
+    // console.log(blogger)
+    const blog = await blogModel.create({
+        blogSummary,
+        author, 
+        name,
+        blogImg: {
+            public_id: myCloud.public_id,
+            url: myCloud.secure_url
+        }
+    });
     blogger.blogs.push(blog);
     await blogger.save();
     res.json({

@@ -28,14 +28,15 @@ const userSchema = mongoose.Schema({
     },
     profileImage: {
         public_id: {
-            type: String,
-            // required: true
+          type: String,
+          required: true
         },
         url: {
             type: String,
-            // required: true
+            default: "https://th.bing.com/th/id/OIP.52T8HHBWh6b0dwrG6tSpVQHaFe?pid=ImgDet&rs=1",
+            required: true
         }
-    },
+      },
     role: {
         type: String,
         default: 'user',

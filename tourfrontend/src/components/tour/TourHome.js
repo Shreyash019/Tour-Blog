@@ -1,11 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
 import './style/tour.css';
 import TourShow from './TourShow';
-import {getTours} from '../../../utils/actions/tourActions';
+import {getTours} from '../../utils/actions/tourActions';
 import {useSelector, useDispatch} from 'react-redux';
 import Pagination from 'react-js-pagination';
-axios.defaults.withCredentials = true;
 
 
 const TourHome = () => {

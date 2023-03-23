@@ -22,7 +22,7 @@ const ShowBlogs = ({ id, blog}) => {
     <div key={id} className='blog-card' onClick={handleOnCLick}>
       <h4>{blog.name}</h4>
       <p>{blog.blogSummary}</p>
-      <img src={blog.blogImg} alt='Default'/>
+      <img src={blog.blogImg.url} alt='Default'/>
       <div>
         <button>Like({blog.likes.length})</button>
         <button>Dislike({blog.dislikes.length})</button>

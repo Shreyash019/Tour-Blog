@@ -5,7 +5,6 @@ import Footer from './components/footer/Footer';
 import About from './components/about/About';
 import Contact from './components/contact/Contact';
 import Main from './components/main/Main';
-import HomePage from './components/HomePage';
 
 // User
 import SignIn from './components/user/auth/SignIn';
@@ -17,27 +16,27 @@ import UpdatePassword from './components/user/auth/UpdatePassword';
 import ResetPassword from './components/user/auth/ResetPassword';
 
 // Blogs
-import AllBlogs from './components/main/blog/AllBlogs';
-import CreateBlog from './components/main/blog/CreateBlog';
-import SingleBlog from './components/main/blog/SingleBlog';
-import UserBlogs from './components/main/blog/UserBlogs';
-import UpdateDeleteBlog from './components/main/blog/UpdateDeleteBlog';
+import AllBlogs from './components/blog/AllBlogs';
+import CreateBlog from './components/blog/CreateBlog';
+import SingleBlog from './components/blog/SingleBlog';
+import UserBlogs from './components/blog/UserBlogs';
+import UpdateDeleteBlog from './components/blog/UpdateDeleteBlog';
 
 // Tours
-import TourHome from './components/main/tour/TourHome';
-import CreateTour from './components/main/tour/CreateTour';
-import SingleTour from './components/main/tour/SingleTour';
-import TourUpdateDelete from './components/main/tour/TourUpdateDelete';
-import CreateReview from './components/main/tour/CreateReview';
-import TourReviews from './components/main/tour/TourReview';
-import ReviewUpdateDelete from './components/main/tour/ReviewUpdateDelete';
+import TourHome from './components/tour/TourHome';
+import CreateTour from './components/tour/CreateTour';
+import SingleTour from './components/tour/SingleTour';
+import TourUpdateDelete from './components/tour/TourUpdateDelete';
+import CreateReview from './components/tour/CreateReview';
+import TourReviews from './components/tour/TourReview';
+import ReviewUpdateDelete from './components/tour/ReviewUpdateDelete';
 
 // Orders
-import AllOrders from './components/main/booking/AllOrders';
-import CreateOrder from './components/main/booking/CreateOrder';
-import OrderDetails from './components/main/booking/OrderDetails';
-import AllOrderGuide from './components/main/booking/AllOrderGuide';
-import GuideUpdateDeleteOrder from './components/main/booking/GuideUpdateDeleteOrder';
+import AllOrders from './components/booking/AllOrders';
+import CreateOrder from './components/booking/CreateOrder';
+import OrderDetails from './components/booking/OrderDetails';
+import AllOrderGuide from './components/booking/AllOrderGuide';
+import GuideUpdateDeleteOrder from './components/booking/GuideUpdateDeleteOrder';
 
 import store from './store/store'
 import './App.css';

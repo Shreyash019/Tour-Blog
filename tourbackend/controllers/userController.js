@@ -6,6 +6,7 @@ const CatchAsync = require('../middleware/catchAsync');
 const authToken = require('../utils/authToken');
 const mail = require('../middleware/sendMail');
 const blogModel = require('../models/blogModel');
+const cloudinary = require('cloudinary');
 
 
 // User Registrayion 
@@ -155,20 +156,39 @@ exports.getUserProfile = CatchAsync(async(req, res, next)=>{
 
 // User Profile Update
 exports.updateUserProfile = CatchAsync(async(req, res, next)=>{
-    const newUserData = {
-        name: req.body.name,
-        address: req.body.address,
-        contact: req.body.contact
-    }
 
-    const user = await UserModel.findByIdAndUpdate(req.user.id, newUserData, {
+    const user = await UserModel.findByIdAndUpdate(req.user.id, req.body, {
         new: true,
         runValidators: true,
         userFindAndModify: true
     });
-    const authorData = {
-        authorName: req.body.name
-    }
+    res.status(200).json({
+        sucess: true,
+        user,
+    })
+})
+
+// User Profile Update
+exports.updateUserProfileImage = CatchAsync(async(req, res, next)=>{
+    const myCloud = await cloudinary.v2.uploader.upload(req.body.profileImage, {
+        folder: "profileImage",
+        width:150,
+        crop: "scale"
+    })
+
+    const user = await UserModel.findByIdAndUpdate(req.user.id, {
+        profileImage:{
+            public_id: myCloud.public_id,
+            url: myCloud.secure_url
+        }
+    }, {
+        new: true,
+        runValidators: true,
+        userFindAndModify: true
+    });
+    // const authorData = {
+    //     authorName: req.body.name
+    // }
     res.status(200).json({
         sucess: true,
         user

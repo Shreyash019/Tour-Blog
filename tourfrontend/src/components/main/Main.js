@@ -1,13 +1,12 @@
 import React, {useEffect} from 'react';
-import './main.css';
 import MainBottom from './MainBottom';
 import MainTop from './MainTop';
 import MetaData from '../header/MetaData';
-
+import './styles/main.css';
 
 const Main = () => {
   return (
-    <div className='main-container'>
+    <div className='home-container'>
       <MetaData title="E-Commerce"/>
       <MainTop/>
       <MainBottom/>

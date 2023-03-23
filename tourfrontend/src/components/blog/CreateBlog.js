@@ -7,14 +7,26 @@ const CreateBlog = () => {
   const history = useNavigate()
   const [blog, setBlog] = useState({
     summary:'',
-    pho: ''
   })
+  const [blogImg, setBlogImg] = useState('')
 
   const handleOnChange = (e)=>{
     setBlog(prev=>({
       ...prev,
       [e.target.name]: e.target.value
     }))
+
+    if (e.target.name === "blogImg") {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setBlogImg(reader.result);
+        }
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    } else {
+      setBlog({ ...blog, [e.target.name]: e.target.value });
+    }
   }
 
   
@@ -26,7 +38,7 @@ const CreateBlog = () => {
   const sendRequest = async()=>{
     const res = await axios.post(`http://localhost:5000/api/v1/blog/post`, {
       blogSummary: blog.summary,
-      blogImg: blog.password
+      blogImg: blogImg
     }).catch(err=>console.log(err))
     const data = await res.data;
     return data
@@ -38,7 +50,7 @@ const CreateBlog = () => {
       <div className='blog-post-new'>
         <form onSubmit={handleOnSubmit}>
           <input type='text' name='summary' value={blog.summary} onChange={handleOnChange}  placeholder='Summary' autoComplete="off"/><br/>
-          <input type='text' name='pho' value={blog.pho} onChange={handleOnChange}  placeholder='Photo' autoComplete="off"/><br/>
+          <input type='file' name='blogImg' accept='image/*' onChange={handleOnChange}/><br/>
           {/* <input type="file" id='files' name="files"/> */}
           <button>Post</button>
         </form>

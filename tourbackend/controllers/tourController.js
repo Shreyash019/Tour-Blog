@@ -2,17 +2,14 @@ const TourModel = require('./../models/tourModel');
 const ErrorHandler = require('../utils/errorHandler')
 const CatchAsync = require('../middleware/catchAsync');
 const ApiFeatures = require('../utils/apiFeatures');
-
+const cloudinary = require('cloudinary');
 // Getting all tours
 exports.getAllTours = CatchAsync(async (req, res, next)=>{
     const resultPerPage = 3
-
     // Tour count
     const tourCount = await TourModel.countDocuments();
-
     const apiFeature = new ApiFeatures(TourModel.find(), req.query).search().filter().pagination(resultPerPage);
     const tours = await apiFeature.query;
-
     if(!tours){
         return next(new ErrorHandler(`Tour doesn't exist`, 500))
     }
@@ -41,9 +38,7 @@ exports.getSingleTour = CatchAsync(async (req, res, next)=>{
 // Creating a tour
 exports.createATour = CatchAsync(async (req, res, next)=>{
     req.body.createdByUser= req.user.id
-
     const tour = await TourModel.create(req.body);
-
     res.status(200).json({
         status: true,
         tour
