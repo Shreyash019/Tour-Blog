@@ -23,13 +23,13 @@ import UserBlogs from './components/blog/UserBlogs';
 import UpdateDeleteBlog from './components/blog/UpdateDeleteBlog';
 
 // Tours
-import TourHome from './components/tour/TourHome';
-import CreateTour from './components/tour/CreateTour';
+import Tour from './components/tour/Tour';
+import CreateTour from './components/tour/guide/CreateTour';
 import SingleTour from './components/tour/SingleTour';
-import TourUpdateDelete from './components/tour/TourUpdateDelete';
-import CreateReview from './components/tour/CreateReview';
-import TourReviews from './components/tour/TourReview';
-import ReviewUpdateDelete from './components/tour/ReviewUpdateDelete';
+import TourUpdateDelete from './components/tour/guide/TourUpdateDelete';
+import CreateReview from './components/tour/user/CreateReview';
+import TourReviews from './components/tour/user/TourReview';
+import ReviewUpdateDelete from './components/tour/user/ReviewUpdateDelete';
 
 // Orders
 import AllOrders from './components/booking/AllOrders';
@@ -87,7 +87,7 @@ function App() {
         <Route exact path='/blog/update' element={<UpdateDeleteBlog/>}/>
 
         {/* Tour module pages */}
-        <Route exact path='/tours' element={<TourHome/>}/>
+        <Route exact path='/tours' element={<Tour/>}/>
         <Route exact path='/tour/create' element={<CreateTour/>}/>
         <Route exact path='/tour/:id' element={<SingleTour/>}/>
         <Route exact path='/tour/update' element={<TourUpdateDelete/>}/>

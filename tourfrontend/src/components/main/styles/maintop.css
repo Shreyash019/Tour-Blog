@@ -1,33 +1,54 @@
 .main-top-container{
     width: 100%;
-    background-color: aqua;
     float: left;
+    background-color: aliceblue;
+    background-image: url('../../img/topbg1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size: 100% 100%;
 }
+.top-content{
+    width: 100%;
+    float: left;
+    height: auto;
+}
+
 @media screen and (max-width: 600px) {
     .main-top-container{
-        height: 80vh;
+        height: 60vh;
     }
 }
 @media screen and (min-width: 600px) {
     .main-top-container{
-        height: 80vh;
+        height: 60vh;
     }
 }
 
 @media screen and (min-width: 780px) {
     .main-top-container{
-        height: 80vh;
+        height: 50vh;
     }
 }
 
 @media screen and (min-width: 920px) {
     .main-top-container{
-        height: 80vh;
+        height: 50vh;
     }
 }
 
 @media screen and (min-width: 1200px) {
     .main-top-container{
         height: 80vh;
+    }
+    .top-content-left{
+        width: 50%;
+        float: left;
+    }
+    .top-content-right{
+        width: 50%;
+        float: left;
+    }
+    .top-content img{
+        width: 100%;
     }
 }

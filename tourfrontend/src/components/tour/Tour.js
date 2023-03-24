@@ -4,6 +4,7 @@ import TourShow from './TourShow';
 import {getTours} from '../../utils/actions/tourActions';
 import {useSelector, useDispatch} from 'react-redux';
 import Pagination from 'react-js-pagination';
+import TourFront from './TourFront';
 
 
 const TourHome = () => {
@@ -24,6 +25,7 @@ const TourHome = () => {
     <>
     {loading ? 'Loading...': 
       <div className='tour-container'>
+        <TourFront/>
         <h2>Available Tours</h2>
         <div className='tour-card-container'>
           {tours && tours.map((tour, index) => (

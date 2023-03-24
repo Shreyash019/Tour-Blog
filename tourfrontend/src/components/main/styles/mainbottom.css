@@ -2,7 +2,30 @@
     width: 100%;
     background-color: white;
     float: left;
+    overflow: auto;
 }
+
+.tour-box-card{
+    width: 70%;
+    height: auto;
+    margin: 0% 15%;
+    overflow: auto;
+}
+
+.home-tour-card{
+    width: 25%;
+    height: 300px;
+    margin: 2% 4%;
+    float: left;
+    background-color: antiquewhite;
+}
+
+.tour-box-card h1{
+    color: rgb(14, 7, 114);
+    text-align: center;
+    padding: 2% 0%;
+}
+
 @media screen and (max-width: 600px) {
     .main-bottom-container{
         height: 80vh;
@@ -28,6 +51,7 @@
 
 @media screen and (min-width: 1200px) {
     .main-bottom-container{
-        height: 80vh;
+        height: auto;
     }
+    
 }

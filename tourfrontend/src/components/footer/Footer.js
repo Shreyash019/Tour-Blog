@@ -1,25 +1,44 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import './footer.css'
+import './footer.css';
+import { BsYoutube, BsFacebook,BsLinkedin } from 'react-icons/bs';
+import { AiFillInstagram } from 'react-icons/ai';
+
 
 const Footer = () => {
   return (
     <div className='footer-container'>
-      <div className='main-footer-container'>
-        <div className='main-footer-left'>
-          <p>.</p>
+      <div className='footer-box'>
+        <div className='footer-left'>
+          <h1>GYM-GO</h1>
+          <hr/>
+          <p>Take your health and body to the next level with our comprehensive program designed to help you to reach fitness goals.</p>
+          <span><BsYoutube/></span>
+          <span><BsFacebook/></span>
+          <span><AiFillInstagram/></span>
+          <span><BsLinkedin/></span>
         </div>
-        <div className='main-footer-right'>
-          <p><Link to='/about'>About</Link></p>
-          <p><Link to='/contact'>Contact</Link></p>
-          <p><Link to='/'>Purpose</Link></p>
-          <p><a href='https://www.linkedin.com/in/shreyash-51sk998p1' target="_blank">Developer</a></p>
+        <div className='footer-mid'>
+          <h2>Our Classes</h2>
+          <hr/>
+          <p>Fitness Classes</p>
+          <p>Aerobics Classes</p>
+          <p>Boxing Classes</p>
+          <p>Power Yoga</p>
+          <p>Learn Machines</p>
+          <p>Full-Body Strength</p>
+        </div>
+        <div className='footer-right'>
+          <h2>Working Hours</h2>
+          <hr/>
+          <h5>Monday-Friday</h5>
+          <p>6:00am - 20:00pm</p>
+          <h5>Saturday</h5>
+          <p>6:00am - 16:00pm</p>
+          <h5>Sunday</h5>
+          <p>Closed</p>
         </div>
       </div>
-      <div className='sub-footer-container'>
-        <p>@ Copyright 2023 | Shreyash</p>
-      </div>
-    </div>
+  </div>
   )
 }
 

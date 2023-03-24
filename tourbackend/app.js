@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload'); 
 const cors = require('cors');
 app.use(cors({credentials: true, origin:`http://localhost:3000`}))
@@ -16,8 +15,6 @@ const errorMiddleware = require('./middleware/error');
 // Configuration
 const dotenv = require('dotenv');
 dotenv.config({path: './config.env'});
-app.use(express.json({limit: "50mb"}));
-app.use(express.urlencoded({limit: "50mb"}));
 
 
 app.use(cookieParser());
