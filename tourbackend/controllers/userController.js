@@ -15,8 +15,8 @@ exports.userRegistration = CatchAsync(async(req, res, next)=>{
     if(!name || !email || !password){
         return res.send('Please Enter Details')
     }
-    const existUser = await UserModel.find({email});
-    if(!existUser){
+    const existUser = await UserModel.findOne({email});
+    if(existUser){
         return res.status(200).send(`User Already exist`)
     }
     const user = await UserModel.create({

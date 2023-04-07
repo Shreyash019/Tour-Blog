@@ -11,14 +11,11 @@ exports.authSendToken = (id)=>{
 
 exports.sendToken = (user, statusCode, res)=>{
     const token = this.authSendToken(user._id);
-
     const options = {
         expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN*24*60*60*1000),
         httpOnly: true,
     }
-
     res.cookie('token', token, options);
-
     res.status(statusCode).json({
         sucess: true,
         user,
@@ -38,6 +35,7 @@ exports.isUserAuthenticated = CatchAsync( async(req, res, next)=>{
     console.log('Token:', token);
     next()
 });
+
 
 //1
 // Guide
@@ -64,17 +62,17 @@ exports.isUserAdmin = (...admin)=>{
 }
 
 
-exports.resourceProtects = (user, res)=>{
-    const token = this.authSignToken(user._id);
+// exports.resourceProtects = (user, res)=>{
+//     const token = this.authSignToken(user._id);
 
-    // options for cookie
-    const options = {
-        expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000),
-        httpOnly: true
-    }
-    res.cookie('token', token, options);
-    res.status(200).json({
-        success: true,
-        token
-    })
-}
+//     // options for cookie
+//     const options = {
+//         expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000),
+//         httpOnly: true
+//     }
+//     res.cookie('token', token, options);
+//     res.status(200).json({
+//         success: true,
+//         token
+//     })
+// }
