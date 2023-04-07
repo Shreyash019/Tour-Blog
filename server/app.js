@@ -19,9 +19,6 @@ dotenv.config({path: './config.env'});
 
 app.use(cookieParser());
 
-// app.use(bodyParser.json({limit: "50mb"}));
-// app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
-
 app.use(fileUpload())
 
 app.get('/api/v1/', (req, res)=>{
